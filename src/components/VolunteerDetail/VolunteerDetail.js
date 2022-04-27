@@ -6,13 +6,13 @@ const VolunteerDetail = () => {
     const { volunteerId } = useParams();
     const [volunteers] = useVolunteerDetail(volunteerId);
     return (
-        <div className='text-center mt-3'>
-            <h2 className='mb-4'>You are about to book: <span className='bg-indigo-100 text-indigo-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded'>{volunteers.name}</span></h2>
-            <Link to={`/volunteers/${volunteerId}`}>
-                <button className='text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2'>
-                    Proceed to checkout
-                </button>
-            </Link>
+        <div className='text-center mt-3 mx-10'>
+            <div class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={volunteers.img} alt="" />
+                <div class="flex flex-col justify-between p-4 leading-normal">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white pl-6">{volunteers.name}</h5>
+                </div>
+            </div>
         </div>
     );
 };

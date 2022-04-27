@@ -1,9 +1,16 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import auth from '../../../.firebase.init';
 import hamburgerMenu from '../../../images/hamburger-menu.png';
 import logo from '../../../logos/Group 1329.png';
+import { useAuthState } from 'react-firebase-hooks/auth';
 const Header = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
+    const [user] = useAuthState(auth);
+    const handleSignOut = () => {
+        signOut(auth);
+    }
     return (
         <div >
             <nav className="relative flex flex-wrap items-center justify-between px-2 py-3  mb-3 nav-font">
@@ -44,22 +51,31 @@ const Header = () => {
                                 as={Link} to="/donation">
                                 Donation
                             </Link>
-                             <Link
+                            <Link
                                 className="nav-item px-3 py-2 flex items-center  hover:opacity-75 font-semibold"
                                 as={Link} to="/events">
                                 Events
                             </Link>
-                             <Link
+                            <Link
                                 className="nav-item px-3 py-2 flex items-center  hover:opacity-75 font-semibold"
                                 as={Link} to="/blog">
                                 Blog
                             </Link>
-                             <Link
+                            {
+                                user ?
+                                <Link
                                 className="nav-item mt-2 px-3 py-2 flex items-center  hover:opacity-75 font-semibold"
                                 as={Link} to="/login">
-                                <button type="button" className="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-12 py-2 mr-2 mb-2">Login</button>
+                                <button onClick={handleSignOut} type="button" className="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-12 py-2 mr-2 mb-2">Log out</button>
                             </Link>
-                             <Link
+                                    :
+                                    <Link
+                                        className="nav-item mt-2 px-3 py-2 flex items-center  hover:opacity-75 font-semibold"
+                                        as={Link} to="/login">
+                                        <button type="button" className="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-12 py-2 mr-2 mb-2">Login</button>
+                                    </Link>
+                            }
+                            <Link
                                 className="nav-item mt-2 py-2 flex items-center  hover:opacity-75 font-semibold"
                                 as={Link} to="/admin">
                                 <button type="button" className="text-white bg-gray-500 hover:bg-gray-800 focus:ring-4  font-medium rounded-lg text-sm px-12 py-2 mb-2">Admin</button>

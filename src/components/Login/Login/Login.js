@@ -1,17 +1,28 @@
 import React, { useRef } from 'react';
 import google from '../../../images/social/google.png';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../.firebase.init';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+
 const Login = () => {
     const navigate = useNavigate();
     const emailRef = useRef('');
     const passwordRef = useRef('');
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const navigateRegister = () => {
         navigate('/register');
     }
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    if(user){
+        navigate(from, { replace: true });
+    }
     const handleSubmit = event => {
         event.preventDefault();
         const email = emailRef.current.value;
@@ -26,11 +37,11 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="mx-auto w-80 relative mb-5">
                         <input type="email" ref={emailRef} id="floating_filled" className="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900  border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                        <label for="floating_filled" className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Email</label>
+                        <label htmlFor="floating_filled" className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Email</label>
                     </div>
                     <div className="mx-auto w-80 relative mb-5">
                         <input type="password" ref={passwordRef} id="floating_filled" className="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900  border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
-                        <label for="floating_filled" className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Password</label>
+                        <label htmlFor="floating_filled" className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Password</label>
                     </div>
                     <input type='submit' className="text-white bg-blue-700 font-medium rounded-lg text-sm px-32 py-2.5 text-center mb-3" value="Login" />
                 </form>

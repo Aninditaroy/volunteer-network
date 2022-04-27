@@ -9,8 +9,8 @@ const Volunteer = ({volunteer}) => {
     }
     return (
         <div className="max-w-sm rounded-lg h-96 w-96 mt-10 mb-48">
-        <div className="bg-sky-300/80 rounded-t-3xl"><img className="" src={img} alt="" /></div>
-        <div className="p-5 bg-sky-300/80 text-center rounded-b-xl">
+        <div className="bg-sky-300/80 rounded-t-3xl w-72"><img className="" src={img} alt="" /></div>
+        <div className="p-5 bg-sky-300/80 text-center rounded-b-xl md:w-72">
             <h5 className="mb-2 text-xl font-bold text-slate-600">{name}</h5>
             <button onClick={() => navigateToVolunteerDetail(_id)} className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700/90 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 Book Volunteer
