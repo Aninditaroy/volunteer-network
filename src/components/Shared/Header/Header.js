@@ -62,7 +62,7 @@ const Header = () => {
                              <Link
                                 className="nav-item mt-2 py-2 flex items-center  hover:opacity-75 font-semibold"
                                 as={Link} to="/admin">
-                                <button type="button" className="text-white bg-gray-500 hover:bg-blue-800 focus:ring-4  font-medium rounded-lg text-sm px-12 py-2 mb-2">Admin</button>
+                                <button type="button" className="text-white bg-gray-500 hover:bg-gray-800 focus:ring-4  font-medium rounded-lg text-sm px-12 py-2 mb-2">Admin</button>
                             </Link>
                         </div>
                     </div>
