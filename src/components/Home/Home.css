@@ -1,0 +1,8 @@
+.home-img {
+    background-image: url('../../images/home-image.png');
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-blend-mode: overlay;
+}
