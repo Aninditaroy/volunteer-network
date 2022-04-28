@@ -11,6 +11,9 @@ import RequireAuth from './components/Login/RequireAuth/RequireAuth';
 import Events from './components/Events/Events/Events';
 import AddEvent from './components/Events/AddEvent/AddEvent';
 import Admin from './components/Admin/Admin';
+import VolunteerList from './components/VolunteerList/VolunteerList/VolunteerList';
+import AddVolunteer from './components/AddVolunteer/AddVolunteer';
+import AddVolunteerList from './components/VolunteerList/AddVolunteerList/AddVolunteerList';
 function App() {
   return (
     <>
@@ -22,9 +25,10 @@ function App() {
         <Route path='/volunteers/:volunteerId' element={<VolunteerDetail/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
-        <Route path='/events' element={
+        <Route path='/events' element={<Events/>}></Route>
+        <Route path='/admin' element={
           <RequireAuth>
-            <Events/>
+            <Admin/>
           </RequireAuth>
         }></Route>
         <Route path='/addevent' element={
@@ -32,9 +36,19 @@ function App() {
             <AddEvent/>
           </RequireAuth>
         }></Route>
-        <Route path='/admin' element={
+        <Route path='/volunteerlist' element={
           <RequireAuth>
-            <Admin/>
+            <VolunteerList/>
+          </RequireAuth>
+        }></Route>
+        <Route path='/addvolunteer' element={
+          <RequireAuth>
+             <AddVolunteer/>
+          </RequireAuth>
+        }></Route>
+        <Route path='/addvolunteerlist' element={
+          <RequireAuth>
+             <AddVolunteerList/>
           </RequireAuth>
         }></Route>
       </Routes>

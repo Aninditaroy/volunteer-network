@@ -1,42 +1,48 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import addEvent from '../../../src/logos/plus 1.png';
+import volunteerListGroupPic from '../../../src/logos/group-background-selected.png';
+import addVolunter from '../../../src/logos/icons8-welfare-40.png';
 const Admin = () => {
-    const {register,handleSubmit} = useForm();
-    const  navigate = useNavigate();
-    const onSubmit = data =>{
-        const url = `http://localhost:5000/volunteers`;
-        fetch(url, {
-            method: 'POST',
-            headers:{
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })  
-        .then(res => res.json())
-        .then(result => {
-            console.log(result);
-            navigate('/volunteers');
-        });
-    }
     return (
-        <div className='p-10 bg-white  shadow-xl mx-auto' style={{ width: '700px' }}>
-            <form className='mt-20' onSubmit={handleSubmit(onSubmit)}>
-                <div className='grid grid-cols-1 justify-center gap-10'>
-                    <div >
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Volunteer Name</label>
-                        <input type="text" {...register("name")} id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" placeholder="" required />
-                    </div>
-                    <div className='mt-2 '>
-                        <label for="photo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Volunteer Banner</label>
-                        <input type="text" {...register("img")} id="photo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" placeholder="Image URL" required />
-                    </div> 
-                    </div>
-                <div>
-                    <input className='text-white bg-blue-700 font-medium rounded-lg text-sm px-32 py-2.5 text-center mb-3 mx-auto flex mt-3' type="submit" value="Add Volunteer" />
+        <div className='flex'>
+            <aside className="" aria-label="Sidebar" >
+                <div className="overflow-y-auto py-4 px-3 bg-gray-100 rounded dark:bg-gray-800" style={{ height: '850px', width: '305px' }}>
+                    <ul className="space-y-2">
+                        <li>
+                            <Link as={Link} to='/volunteerlist' className="flex items-center p-2 text-base font-normal text-black rounded-lg  hover:text-sky-500 ">
+                                <img src={volunteerListGroupPic} alt="" className='w-8 h-8' />
+                                <span className="ml-3 text-md font-medium">Volunteer register list</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <span className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
+                                <Link as={Link} to='/addvolunteerlist' className='flex items-center text-base font-normal text-black rounded-lg  hover:text-sky-500'>
+                                    <img src={addVolunter} alt="" className='w-8 h-8' />
+                                    <span className="ml-3 text-md font-medium">Add Volunteer List</span>
+                                </Link>
+                            </span>
+                        </li>
+                        <li>
+                            <span className="flex items-center  text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
+                                <Link as={Link} to='/addevent' className='flex items-center p-2 text-base font-normal text-black rounded-lg  hover:text-sky-500'>
+                                    <img src={addEvent} alt="" className='w-8 h-8' />
+                                    <span className="ml-3 text-md font-medium">Add Event</span>
+                                </Link>
+                            </span>
+                        </li>
+                        <li>
+                            <span className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
+                                <Link as={Link} to='/addvolunteer' className='flex items-center text-base font-normal text-black rounded-lg  hover:text-sky-500'>
+                                    <img src={addVolunter} alt="" className='w-8 h-8' />
+                                    <span className="ml-3 text-md font-medium">Add Volunteer</span>
+                                </Link>
+                            </span>
+                        </li>
+
+                    </ul>
                 </div>
-            </form>
+            </aside>
         </div>
     );
 };
