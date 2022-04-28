@@ -14,6 +14,7 @@ import Admin from './components/Admin/Admin';
 import VolunteerList from './components/VolunteerList/VolunteerList/VolunteerList';
 import AddVolunteer from './components/AddVolunteer/AddVolunteer';
 import AddVolunteerList from './components/VolunteerList/AddVolunteerList/AddVolunteerList';
+import Donation from './components/Donation/Donation';
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
         <Route path='/volunteers/:volunteerId' element={<VolunteerDetail/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
+        <Route path='/donation' element={<Donation/>}></Route>
         <Route path='/events' element={<Events/>}></Route>
         <Route path='/admin' element={
           <RequireAuth>
