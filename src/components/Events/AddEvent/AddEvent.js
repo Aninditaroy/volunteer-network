@@ -1,8 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Admin from '../../Admin/Admin';
+import { useNavigate } from 'react-router-dom';
 const AddEvent = () => {
     const { handleSubmit, register } = useForm();
+    const navigate = useNavigate();
     const onSubmit = data => {
         const url = `http://localhost:5000/events`;
         fetch(url, {
@@ -15,6 +16,7 @@ const AddEvent = () => {
             .then(res => res.json())
             .then(result => {
                 console.log(result);
+                navigate('/events');
             })
     }
     return (
@@ -28,23 +30,22 @@ const AddEvent = () => {
                         </div>
                         <div >
                             <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Event Date</label>
-                            <input type="date" {...register("date")} id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" placeholder="" required />
+                            <input type="date" {...register("event_date")} id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" placeholder="" required />
                         </div>
 
                         <div >
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Description</label>
-                            <textarea type="text" {...register("description")} id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" placeholder="" required />
+                            <textarea type="text" {...register("event_description")} id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" placeholder="" required />
                         </div>
                         <div>
                             <label for="photo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Banner</label>
-                            <input type="text" {...register("photo")} id="photo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" placeholder="Image URL" required />
+                            <input type="text" {...register("img")} id="photo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" placeholder="Image URL" required />
                         </div>
                     </div>
                     <div>
                         <input className='text-white bg-blue-700 font-medium rounded-lg text-sm px-32 py-2.5 text-center mb-3 mx-auto flex mt-3' type="submit" value="Submit" />
                     </div>
                 </form>
-
             </div>
         </ >
     );
